@@ -102,6 +102,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    @IBAction func didTapTweet(_ sender: Any) {
+        performSegue(withIdentifier: "TweetSegue", sender: self)
+    }
     /*
     // MARK: - Navigation
 
