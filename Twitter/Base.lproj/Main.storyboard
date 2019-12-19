@@ -86,6 +86,22 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aY-dV-cgM">
+                                                    <rect key="frame" x="295" y="95" width="32" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <connections>
+                                                        <action selector="onTapReTweet:" destination="wyv-0b-6OM" eventType="touchUpInside" id="Zdi-ZJ-jHZ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-Q0-ehI">
+                                                    <rect key="frame" x="333" y="95" width="32" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="favor-icon"/>
+                                                    <connections>
+                                                        <action selector="onTapFavorite:" destination="wyv-0b-6OM" eventType="touchUpInside" id="R8x-yD-eKu"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6Lh-KE-wEv" firstAttribute="top" secondItem="M49-NQ-5Qy" secondAttribute="topMargin" id="48h-zc-PLB"/>
@@ -141,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A7W-VM-N5o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3482" y="-3320"/>
+            <point key="canvasLocation" x="-3482.4000000000001" y="-3320.6896551724139"/>
         </scene>
         <!--Post Tweet View Controller-->
         <scene sceneID="MP4-rW-fZw">
@@ -203,4 +219,8 @@
             <point key="canvasLocation" x="-4199.1999999999998" y="-3317.0914542728638"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favor-icon" width="30" height="30"/>
+        <image name="retweet-icon" width="30" height="30"/>
+    </resources>
 </document>

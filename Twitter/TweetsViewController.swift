@@ -49,7 +49,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         numberOfTweets += 10
         TwitterAPICaller.client?.getDictionariesRequest(url: "https://api.twitter.com/1.1/statuses/home_timeline.json", parameters: ["count":self.numberOfTweets], success: { (NSDictionary) in
             self.tweets = NSDictionary as! [[String:Any]]
-            print(self.tweets)
             self.tableView.reloadData()
             //self.tweetRefresher.endRefreshing()
             self.run(after: 2) {
@@ -74,8 +73,23 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         UserDefaults.standard.set(false, forKey: "loggedIn")
     }
+    func getTweetID(){
+        
+        //TwitterAPICaller.client.ge
+        
+        
+    }
+    @IBAction func onTapFavorite(_ sender: Any) {
+        
+        
+        
+    }
+    @IBAction func onTapReTweet(_ sender: Any) {
+        
+        
+        
+    }
     
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
     }
@@ -101,7 +115,13 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             getMoreTweets()
         }
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedTweet = tweets[indexPath.row]
     
+        print(selectedTweet)
+        
+        
+    }
     /*
     // MARK: - Navigation
 
