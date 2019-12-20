@@ -92,6 +92,14 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.usernameLabel.text = user["name"] as? String
         cell.screenNameLabel.text = user["screen_name"] as? String
         cell.tweetContentLabel.text = tweet["text"] as? String
+        let cellFavored = tweet["favorited"] as! Bool
+        let cellreTweeted = tweet["retweeted"] as! Bool
+        if cellFavored{
+            cell.favored = true
+        }
+        if cellreTweeted{
+            cell.retweeted = true
+        }
         
         let url = URL(string: imageURL)!
         cell.profileImageView.af_setImage(withURL: url)
@@ -103,6 +111,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.row + 1 == tweets.count{
             getMoreTweets()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(tweets[indexPath.row])
     }
     
     @IBAction func didTapTweet(_ sender: Any) {
