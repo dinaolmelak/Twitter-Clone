@@ -10,7 +10,7 @@ import UIKit
 
 class PostTweetViewController: UIViewController {
 
-    @IBOutlet weak var tweetTextLabel: UITextView!
+    @IBOutlet weak var tweetTextLabel: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +22,9 @@ class PostTweetViewController: UIViewController {
             let tweet = tweetTextLabel.text!
             TwitterAPICaller.client?.postTweet(tweetText: tweet, success: {
                 print("Yes")
+                self.tweetTextLabel.endEditing(true)
+                self.dismiss(animated: true, completion: nil)
+                
             }, failure: { (Error) in
                 print(Error)
             })
