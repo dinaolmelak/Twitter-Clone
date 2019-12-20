@@ -2,6 +2,7 @@
 //  PostTweetViewController.swift
 //  Twitter
 //
+
 //  Created by Dinaol Melak on 12/19/19.
 //  Copyright © 2019 Dan. All rights reserved.
 //
@@ -9,6 +10,7 @@
 import UIKit
 
 class PostTweetViewController: UIViewController {
+
 
     @IBOutlet weak var tweetTextLabel: UITextField!
     
@@ -37,6 +39,7 @@ class PostTweetViewController: UIViewController {
         }
         
         
+
     }
     
 
