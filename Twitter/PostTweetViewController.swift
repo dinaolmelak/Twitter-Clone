@@ -2,7 +2,8 @@
 //  PostTweetViewController.swift
 //  Twitter
 //
-//  Created by Center for Innovation on 12/19/19.
+
+//  Created by Dinaol Melak on 12/19/19.
 //  Copyright © 2019 Dan. All rights reserved.
 //
 
@@ -10,28 +11,35 @@ import UIKit
 
 class PostTweetViewController: UIViewController {
 
-    @IBOutlet weak var TweetTextField: UITextField!
+
+    @IBOutlet weak var tweetTextLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
     @IBAction func onTapTweet(_ sender: Any) {
-        if TweetTextField.text != ""{
-            TwitterAPICaller.client?.postTweet(inString: TweetTextField.text!, success: {
-                print("Success")
+        if tweetTextLabel.text != ""{
+            let tweet = tweetTextLabel.text!
+            TwitterAPICaller.client?.postTweet(tweetText: tweet, success: {
+                print("Yes")
+                self.tweetTextLabel.endEditing(true)
+                self.dismiss(animated: true, completion: nil)
+                
             }, failure: { (Error) in
                 print(Error)
             })
-        } else{
-            let alert = UIAlertController(title: "Input Tweet", message: "Their is no tweet in the textfield, please write down a tweet", preferredStyle: .alert)
-            let tweetAlertAction = UIAlertAction(title: "Okay, will do", style: .cancel, handler: nil)
-            alert.addAction(tweetAlertAction)
-            present(alert, animated: true, completion: nil)
+        }else{
+            let alert = UIAlertController(title: "Missing Tweet", message: "Their is no tweet in the text field", preferredStyle: .alert)
+            let alertButton = UIAlertAction(title: "Okay, I'll Tweet", style: .cancel, handler: nil)
+            alert.addAction(alertButton)
+            present(alert, animated: true)
+            
         }
         
         
-        
+
     }
     
 

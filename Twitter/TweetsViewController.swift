@@ -34,7 +34,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         numberOfTweets = 10
         TwitterAPICaller.client?.getDictionariesRequest(url: "https://api.twitter.com/1.1/statuses/home_timeline.json", parameters: ["count":self.numberOfTweets], success: { (NSDictionary) in
             self.tweets = NSDictionary as! [[String:Any]]
-            print(self.tweets)
             self.tableView.reloadData()
             //self.tweetRefresher.endRefreshing()
             self.run(after: 2) {
@@ -42,6 +41,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }, failure: { (Error) in
             print("could not get tweets")
+            let alertNotify = UIAlertController(title: "Apologies!", message: "Unfortunately, Your tweets could not be found! Please Try again later.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertNotify.addAction(alertAction)
+            self.present(alertNotify, animated: true, completion: nil)
         })
         
     }
@@ -56,6 +59,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }, failure: { (Error) in
             print("could not get tweets")
+            print(Error)
         })
         
     }
@@ -97,12 +101,19 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         let tweet = tweets[indexPath.row]
+        let tweetID = tweet["id"] as! Int
+        cell.currentTweet = tweet
+        cell.currentTweetID = tweetID
         let user = tweet["user"] as! [String:Any]
         let imageURL = user["profile_image_url_https"] as! String
         //print("Here------")
         cell.usernameLabel.text = user["name"] as? String
         cell.screenNameLabel.text = user["screen_name"] as? String
         cell.tweetContentLabel.text = tweet["text"] as? String
+        let cellFavored = tweet["favorited"] as! Bool
+        let cellreTweeted = tweet["retweeted"] as! Bool
+        cell.favored = cellFavored
+        cell.retweeted = cellreTweeted
         
         let url = URL(string: imageURL)!
         cell.profileImageView.af_setImage(withURL: url)
@@ -118,9 +129,10 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTweet = tweets[indexPath.row]
     
+
         print(selectedTweet)
         
-        
+
     }
     /*
     // MARK: - Navigation
