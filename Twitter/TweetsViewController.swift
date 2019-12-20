@@ -77,22 +77,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         UserDefaults.standard.set(false, forKey: "loggedIn")
     }
-    func getTweetID(){
-        
-        //TwitterAPICaller.client.ge
-        
-        
-    }
-    @IBAction func onTapFavorite(_ sender: Any) {
-        
-        
-        
-    }
-    @IBAction func onTapReTweet(_ sender: Any) {
-        
-        
-        
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
@@ -133,6 +117,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(selectedTweet)
         
 
+    }
+    @IBAction func didTapTweet(_ sender: Any) {
+        performSegue(withIdentifier: "TweetSegue", sender: self)
     }
     /*
     // MARK: - Navigation
