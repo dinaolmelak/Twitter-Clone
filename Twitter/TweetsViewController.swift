@@ -86,6 +86,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         let tweet = tweets[indexPath.row]
+        let tweetID = tweet["id"] as! Int
+        cell.currentTweet = tweet
+        cell.currentTweetID = tweetID
         let user = tweet["user"] as! [String:Any]
         let imageURL = user["profile_image_url_https"] as! String
         //print("Here------")
@@ -94,12 +97,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.tweetContentLabel.text = tweet["text"] as? String
         let cellFavored = tweet["favorited"] as! Bool
         let cellreTweeted = tweet["retweeted"] as! Bool
-        if cellFavored{
-            cell.favored = true
-        }
-        if cellreTweeted{
-            cell.retweeted = true
-        }
+        cell.favored = cellFavored
+        cell.retweeted = cellreTweeted
         
         let url = URL(string: imageURL)!
         cell.profileImageView.af_setImage(withURL: url)
