@@ -40,7 +40,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tweetRefresher.endRefreshing()
             }
         }, failure: { (Error) in
-            print("could not get tweets")
+            print("could not get tweets\(Error)")
             let alertNotify = UIAlertController(title: "Apologies!", message: "Unfortunately, Your tweets could not be found! Please Try again later.", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertNotify.addAction(alertAction)
